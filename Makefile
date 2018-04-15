@@ -1,8 +1,8 @@
-CC = g++
+CXX = g++
 LINKER = g++
 
 LFLAGS = -Wall 
-CFLAGS = -Wall -c -std=c++14
+CXXFLAGS = -Wall -c -std=c++14
 
 OBJDIR := obj
 SRCDIR := src
@@ -11,9 +11,9 @@ BINDIR := bin
 TEXDIR := latex
 DOCDIR := docs
 
-TARGET = tarea6
+TARGET = genetic-algorithm.out
 
-INCLUDES := $(wildcard $(SRCDIR)/*.h*)
+INCLUDES := $(wildcard $(SRCDIR)/*.hpp*)
 SOURCES  := $(wildcard $(SRCDIR)/*.cpp)
 
 OBJECTS := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
@@ -27,14 +27,14 @@ $(BINDIR)/$(TARGET): $(OBJECTS)
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp 
 	@mkdir -p $(OBJDIR)
-	@$(CC) $(CFLAGS) $< -o $@
+	@$(CXX) $(CXXFLAGS) $< -o $@
 	@echo "Compiled "$<" successfully!"
 
 optimized:
-	make CFLAGS="-O2 -Wall -c -std=c++14 "; LFLAGS="-O2 -Wall"
+	make CXXFLAGS="-O2 $(CXXFLAGS) "; LFLAGS="-O2 -Wall"
 
 debug:
-	make CFLAGS="-g -Wall -c -std=c++14 "; LFLAGS="-g -Wall"
+	make CXXFLAGS="-g $(CXXFLAGS) "; LFLAGS="-g -Wall"
 
 .PHONY: latex
 latex:
