@@ -1,4 +1,4 @@
-/*#include "GeneticAlgorithm.hpp"
+#include "GeneticAlgorithm.hpp"
 
 template<class T>
 GeneticAlgorithm<T>::GeneticAlgorithm(
@@ -173,4 +173,4 @@ template<class T>
 const T &GeneticAlgorithm<T>::getBest()
 {
     return *std::min_element(population.begin(), population.end());
-}*/
+}
